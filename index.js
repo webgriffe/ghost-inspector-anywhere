@@ -52,8 +52,14 @@ async function closeNgrokTunnel() {
     spinner.succeed('ngrok tunnel closed');
 }
 
-async function mainCommandHandler(tests) {
-    try {    
+async function mainCommandHandler(tests, outputDir) {
+    try {
+        outputDir = path.resolve(process.cwd(), outputDir);
+        if (!fs.lstatSync(outputDir).isDirectory) {
+            console.error(`The provided output directory path "${outputDir}" is not a directory.`)
+            return 1;
+        }
+
         var exitCode = 0;
         tests = path.resolve(process.cwd(), tests);
         
@@ -80,10 +86,12 @@ async function mainCommandHandler(tests) {
                 spinner.succeed(`Test "${chalk.green(testObject.name)}" passed`); 
             } else {
                 exitCode = 1;
-                spinner.fail(`Test "${chalk.green(testObject.name)}" failed`); 
-                // TODO bettere handling of failing test
-                console.log(result);
+                spinner.fail(`Test "${chalk.green(testObject.name)}" failed`);
             }
+            
+            const now = new Date();
+            const outputFilename = `${outputDir}/${now.getFullYear()}${now.getMonth()+1}${now.getDate()}${now.getHours()}${now.getMinutes()}${now.getSeconds()} - ${testObject.name}.json`;
+            fs.writeFileSync(outputFilename, JSON.stringify(result, null, 2));
         }
         
         await closeNgrokTunnel();
@@ -96,7 +104,7 @@ async function mainCommandHandler(tests) {
 }
 
 program
-    .arguments('<tests>')
+    .arguments('<tests> <outputDir>')
     .action(mainCommandHandler);
 
 program.parse(process.argv);
