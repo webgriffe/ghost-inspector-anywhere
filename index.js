@@ -72,7 +72,7 @@ async function mainCommandHandler(tests) {
         const ngrokUrl = await openNgrokTunnel();
 
         for (testFile of tests) {
-            const testObject = require('./' + testFile);
+            const testObject = JSON.parse(fs.readFileSync(testFile));
             testObject.startUrl = ngrokUrl;
             const spinner = ora(`Running test "${chalk.green(testObject.name)}"...`).start();
             const result = await executeGhostInspectorTest(GhostInspectorOrganizationId, testObject);
