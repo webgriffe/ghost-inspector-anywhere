@@ -5,6 +5,7 @@ const GhostInspectorOrganizationId = process.env.GHOST_INSPECTOR_ORGANIZATION_ID
 
 const program = require('commander');
 const fs = require('fs');
+const path = require('path');
 const ngrok = require('ngrok');
 const ora = require('ora');
 const chalk = require('chalk');
@@ -54,6 +55,7 @@ async function closeNgrokTunnel() {
 async function mainCommandHandler(tests) {
     try {    
         var exitCode = 0;
+        tests = path.resolve(process.cwd(), tests);
         
         if (fs.lstatSync(tests).isDirectory) {
             tests = findAllJsonFilesRecursively(tests);
