@@ -13,7 +13,6 @@ Where `<tests>` could be either a directory containing Ghost Inspector JSON test
 
 ## TODO
 
-* Allow to configure Ghost Inspector (API key and organization ID) with env vars and/or CLI arguments
 * Allow to configure ngrok tunnel with config file (but watchout for [this issue](https://github.com/bubenshchykov/ngrok/issues/197)
 * Better handling of failed test (dump debug info somewhere)
 * Allow to install through npm

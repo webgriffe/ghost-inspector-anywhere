@@ -6,6 +6,7 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "commander": "^6.1.0",
+    "dotenv": "^8.2.0",
     "ghost-inspector": "^4.1.6",
     "ngrok": "^3.3.0",
     "ora": "^5.1.0"

@@ -1,6 +1,7 @@
-// TODO put these stuff in env file
-const GhostInspectorApiKey = ''; // Enter Ghost Inspector API Key here
-const GhostInspectorOrganizationId = ''; // Enter Ghost Inspector organization ID here
+require('dotenv').config()
+
+const GhostInspectorApiKey = process.env.GHOST_INSPECTOR_API_KEY;
+const GhostInspectorOrganizationId = process.env.GHOST_INSPECTOR_ORGANIZATION_ID;
 
 const program = require('commander');
 const fs = require('fs');
