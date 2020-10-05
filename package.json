@@ -1,6 +1,13 @@
 {
   "name": "ghost-inspector-anywhere",
   "version": "0.1.0",
+  "homepage": "https://github.com/webgriffe/ghost-inspector-anywhere",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webgriffe/ghost-inspector-anywhere"
+  },
+  "keywords": ["ghostinspector", "ngrok", "testing"],
+  "author": "Webgriffe SRL <support@webgriffe.com>",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
