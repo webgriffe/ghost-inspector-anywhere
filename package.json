@@ -17,5 +17,8 @@
     "ghost-inspector": "^4.1.6",
     "ngrok": "^3.3.0",
     "ora": "^5.1.0"
+  },
+  "bin": {
+    "ghost-inspector-anywhere": "./index.js"
   }
 }
