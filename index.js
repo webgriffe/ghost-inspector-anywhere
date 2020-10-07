@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 require('dotenv').config()
 
 const GhostInspectorApiKey = process.env.GHOST_INSPECTOR_API_KEY;
