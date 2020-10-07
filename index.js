@@ -82,7 +82,7 @@ async function mainCommandHandler(tests, outputDir) {
         if (program.setupScript) {
             const spinner = ora(`Executing setup script "${program.setupScript}"...`).start();
             try {
-                await spawn.execFile(program.setupScript, [ngrokUrl]);
+                spawn.execFileSync(program.setupScript, [ngrokUrl]);
             } catch (e) {
                 spinner.fail(`Setup script "${program.setupScript}" failed.`);
                 throw e;
@@ -110,7 +110,7 @@ async function mainCommandHandler(tests, outputDir) {
         if (program.teardownScript) {
             const spinner = ora(`Executing tear down script "${program.teardownScript}"...`).start();
             try {
-                await spawn.execFile(program.teardownScript, [ngrokUrl]);
+                spawn.execFileSync(program.teardownScript, [ngrokUrl]);
             } catch (e) {
                 spinner.fail(`Tear down script "${program.teardownScript}" failed.`);
                 throw e;
@@ -120,7 +120,6 @@ async function mainCommandHandler(tests, outputDir) {
 
         await closeNgrokTunnel();
     } catch (e) {
-        exitCode = 1;
         console.error(e);
         process.exit(1);
     }
