@@ -40,8 +40,9 @@ async function openNgrokTunnel() {
     const spinner = ora('Creating ngrok tunnel...').start();
     // TODO make tunnel name and config path configurable
     const ngrokUrl = await ngrok.connect({
-        addr: '8000',
-        proto: 'http'
+        addr: process.env.NGROK_TUNNEL_PORT,
+        proto: process.env.NGROK_TUNNEL_PROTO,
+        bind_tls: (process.env.NGROK_TUNNEL_BIND_TLS == '1')
     });
     spinner.succeed(`ngrok tunnel successfully opened at "${chalk.green(ngrokUrl)}"`);
     return ngrokUrl;
