@@ -120,12 +120,11 @@ async function mainCommandHandler(tests, outputDir) {
         }
 
         await closeNgrokTunnel();
+        process.exit(exitCode);
     } catch (e) {
         console.error(e);
         process.exit(1);
     }
-
-    return exitCode;
 }
 
 program
