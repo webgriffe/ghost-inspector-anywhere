@@ -38,6 +38,9 @@ async function executeGhostInspectorTest (myOrganizationId, myTest) {
 
 async function openNgrokTunnel() {
     const spinner = ora('Creating ngrok tunnel...').start();
+    if (process.env.NGROK_AUTH_TOKEN) {
+        await ngrok.authtoken(process.env.NGROK_AUTH_TOKEN);
+    }
     // TODO make tunnel name and config path configurable
     const ngrokUrl = await ngrok.connect({
         addr: process.env.NGROK_TUNNEL_PORT,
